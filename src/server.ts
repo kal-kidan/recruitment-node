@@ -3,12 +3,12 @@ import {Request, Response, NextFunction} from 'express';
 import httpStatus from 'http-status' ; 
 import cors from 'cors';
 import { errorConverter, errorHandler } from './middlewares/error';
-import authLimiter from './middlewares/rateLimiter';
-import auth from './middlewares/auth';
+import authLimiter from './middlewares/rateLimiter'; 
 import ApiError from './utils/ApiError'   
 import configs from './config/config';
-import routes from './routes/index.route'; 
+import routes from './routes/index'; 
 import logger from './config/logger';  
+import sequelize from './utils/db-connection';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -22,9 +22,8 @@ app.options("*", (req, res, next)=>{
 if (configs.env === "production") {
   app.use("/", authLimiter);
 }
-
-app.use(auth);
-app.use("/", routes);
+ 
+app.use("/", routes); 
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
 });
@@ -33,7 +32,13 @@ app.use(errorConverter);
 
 app.use(errorHandler);
 
-const server = app.listen(configs.port, () => {
+const server = app.listen(configs.port, async () => {
+  try {
+    await sequelize.authenticate();
+    logger.info('Connection has been established successfully.');
+  } catch (error) {
+    logger.error('Unable to connect to the database:', error);
+  }
   logger.info(`Server listening to port ${configs.port}`); 
 });
 

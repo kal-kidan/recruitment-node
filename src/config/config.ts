@@ -9,6 +9,7 @@ const envVarsSchema = Joi.object()
       .required(),
     PORT: Joi.number().positive().default(3000),
     APP_URL: Joi.string(),
+    EMAIL_KEY: Joi.string().required(),
   })
   .unknown();
 
@@ -24,5 +25,6 @@ const configs = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   appUrl: envVars.APP_URL,
+  emailKey: envVars.EMAIL_KEY
 };
 export default configs;
