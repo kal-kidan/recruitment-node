@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.get(
   "/available", 
-  new CertificateController().getMyCertificates
+  new CertificateController().getAvailableCertificate
 ); 
 router.get(
   "/user", 
-  new CertificateController().getAvailableCertificate
+  new CertificateController().getMyCertificates
 );
 router.post(
   "/transfer", 

@@ -15,12 +15,12 @@ const auth = catchAsync(async (req: ExtendedRequest, res: Response, next: NextFu
     const token = req.headers.authorization.replace("Bearer ", ""); 
     const decoded: any = jwt.verify(token, configs.tokenKey)  
     const { email } = decoded;
-    const user = await User.findOne( {where: { email } });  
+    const user = await User.findOne( {where: { email }, raw: true });  
    if(!user){
     throw new ApiError(httpStatus.UNAUTHORIZED, message);
    } 
-   req.user = User 
-   req.token = token
+   req.user = user 
+   req.token = token 
    next() 
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, message);

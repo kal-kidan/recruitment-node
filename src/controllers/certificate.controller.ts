@@ -8,18 +8,18 @@ export default class CertificateController{
   constructor(){
     this.services = new Services();
   }
-  public getMyCertificates = catchAsync(async (req: Request, res: Response) => {
-    const certificates = await this.services.getMyCertificates();
-    res.status(httpStatus.CREATED).send(certificates);
+  public getMyCertificates = catchAsync(async (req: ExtendedRequest, res: Response) => {
+    const certificates = await this.services.getMyCertificates(req.user.id);
+    res.status(httpStatus.OK).send(certificates);
   });
   
-  public getAvailableCertificate = catchAsync(async (req: ExtendedRequest, res: Response) => {
-    const certificates = await this.services.getAvailableCertificate(req.user.id);
+  public getAvailableCertificate = catchAsync(async (req: Request, res: Response) => { 
+    const certificates = await this.services.getAvailableCertificate();
     res.status(httpStatus.OK).send(certificates);
   }); 
 
   public transferCertificate = catchAsync(async (req: ExtendedRequest, res: Response) => {
-    await this.services.transferCertificate(req.body, req.user.id);
-    res.status(httpStatus.OK).send({message: "Successfuly transfered."});
+    const certificate = await this.services.transferCertificate(req.body, req.user.id);
+    res.status(httpStatus.OK).send({certificate, message: "Successfuly transfered."});
   }); 
 }

@@ -4,16 +4,15 @@
   "description": "Agreena code challenge",
   "main": "./src/server.ts",
   "scripts": {
-    "start": "node ./build/server.js",
-    "dev": "nodemon ./src/server.ts",
-    "build": "tsc -p ."
+    "start": "nodemon ./src/index.ts",
+    "run dev": "node ./build/index.js",
+    "build": "tsc -p .",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "Kalkidan Tesfaye",
   "license": "ISC",
   "dependencies": {
-    "@faker-js/faker": "^7.5.0",
-    "@types/bcrypt": "^5.0.0",
-    "@types/express": "^4.17.13",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
@@ -30,9 +29,17 @@
     "winston": "^3.8.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^29.0.2",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.7.16",
-    "nodemon": "^2.0.19"
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.0.3",
+    "nodemon": "^2.0.19",
+    "supertest": "^6.2.4",
+    "ts-jest": "^29.0.1"
   }
 }

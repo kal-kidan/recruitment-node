@@ -27,8 +27,8 @@ export default class Services {
             throw new ApiError(httpStatus.UNAUTHORIZED, "You can't transfer this certificate.")
         }
         certificate.owner = body.userId;
-        certificate.status = "transfered";
-        await certificate.save(); 
+        certificate.status = "transferred";
+        return await certificate.save()
     }
   }
   
