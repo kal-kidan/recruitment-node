@@ -9,7 +9,8 @@ import configs from './config/config';
 import routes from './routes/index'; 
 import logger from './config/logger';  
 import sequelize from './utils/db-connection';
-
+import { runSeed } from './seed/index.seed';
+import { Sequelize } from 'sequelize';
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -33,9 +34,14 @@ app.use(errorConverter);
 app.use(errorHandler);
 
 const server = app.listen(configs.port, async () => {
-  try {
+  try { 
     await sequelize.authenticate();
     logger.info('Connection has been established successfully.');
+    // prepare seed
+    logger.info("Inserting rows ..");
+    await runSeed();
+    logger.info("Seed successfuly created.");
+    
   } catch (error) {
     logger.error('Unable to connect to the database:', error);
   }

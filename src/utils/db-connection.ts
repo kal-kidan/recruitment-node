@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
-const sequelize = new Sequelize('Carbon Certificate', 'root', '', {
-    host: 'localhost',
+import configs from '../config/config'; 
+const sequelize = new Sequelize(configs.dbName, configs.dbUsername, configs.dbPassword, {
+    host: configs.dbHost,
     dialect: 'mysql',
     logging: false
 });

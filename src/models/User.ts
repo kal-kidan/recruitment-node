@@ -2,6 +2,11 @@ const { DataTypes } = require('sequelize');
 import sequelize from "../utils/db-connection";
 import bcrypt from 'bcrypt';
 const User = sequelize.define('User', { 
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false
@@ -13,15 +18,11 @@ const User = sequelize.define('User', {
   },
   password: {
     type: DataTypes.STRING, 
-    validate: {
-      min: 6
-    }
-  },
-}, {  
+  }
 });
 
 (async function(){
-  await User.sync();
+  await sequelize.sync();;
 })();
 
 User.beforeSave((user)=>{
@@ -29,12 +30,5 @@ User.beforeSave((user)=>{
     const hashedPassword =  bcrypt.hashSync(password, 10);
     user.set("password", hashedPassword) 
 });
-
-User.prototype.compare = function (password: string){
-    return bcrypt.compareSync(password, this.password);   
-}
-
-
-
 
 export default User;

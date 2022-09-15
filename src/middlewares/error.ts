@@ -13,11 +13,9 @@ export const errorConverter = (err: any, req: Request, res: Response, next: Next
       error.statusCode || error instanceof Sequelize.Error
         ? httpStatus.BAD_REQUEST
         : httpStatus.INTERNAL_SERVER_ERROR;
-    const message = error instanceof Sequelize.Error ? error: error.message || httpStatus[statusCode];
+    const message = error.message || httpStatus[statusCode];
     error = new ApiError(statusCode, message, false, err.stack);
-  }
-  console.log(error.UniqueConstraintError);
-  
+  } 
   next(error);
 }
 

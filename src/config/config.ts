@@ -9,7 +9,11 @@ const envVarsSchema = Joi.object()
       .required(),
     PORT: Joi.number().positive().default(3000),
     APP_URL: Joi.string(),
-    EMAIL_KEY: Joi.string().required(),
+    TOKEN_KEY: Joi.string().required(),
+    DB_USERNAME: Joi.string().required(),
+    DB_PASSWORD: Joi.string(),
+    DB_HOST: Joi.string().required(),
+    DB_NAME: Joi.string().required(),
   })
   .unknown();
 
@@ -25,6 +29,10 @@ const configs = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   appUrl: envVars.APP_URL,
-  emailKey: envVars.EMAIL_KEY
+  tokenKey: envVars.TOKEN_KEY,
+  dbHost: envVars.DB_HOST,
+  dbUsername: envVars.DB_USERNAME,
+  dbPassword: envVars.DB_PASSWORD,
+  dbName: envVars.DB_NAME
 };
 export default configs;
