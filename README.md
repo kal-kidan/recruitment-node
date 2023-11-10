@@ -18,7 +18,5 @@ The APIs contain endpoints:
   - `available` (_no owner_)
   - `owned` (_owner is present and certificate hasn't been transferred_)
   - `transferred` (_owner is present and certificate has been transferred from one owner to another_)
-- Owner (_relation to existing user, can be empty_)
- 
-- Application  is writte with typescript  
+- Owner (_relation to existing user, can be empty_)  
 - Seeds are included with (_100 random certificates, 5 random users with certificates and 5 without them_)  
