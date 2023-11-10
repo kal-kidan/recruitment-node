@@ -10,7 +10,7 @@ Create the API containing endpoints:
 
 ##### Data informations
 
-**Carbon certificate** should contain the following data:
+**Carbon certificate**  contain the following data:
 
 - Unique ID
 - Country
@@ -19,13 +19,6 @@ Create the API containing endpoints:
   - `owned` (_owner is present and certificate hasn't been transferred_)
   - `transferred` (_owner is present and certificate has been transferred from one owner to another_)
 - Owner (_relation to existing user, can be empty_)
-
-##### Requirements
-
-- Application should be written with strong typing (_TypeScript_)
-- Framework is free of choice
-- Authentication should be implemented (_type/package if free of choice_)
-- Seeds should be included (_100 random certificates, 5 random users with certificates and 5 without them_)
-- Tests have to be included
-
-### Good luck!
+ 
+- Application  is writte with typescript  
+- Seeds are included with (_100 random certificates, 5 random users with certificates and 5 without them_)  
