@@ -1,7 +1,7 @@
  
 ### Carbon Certificates application API
 
-Create the API containing endpoints:
+The APIs contain endpoints:
 
 1. Login
 2. List of available Carbon certificates (_no owner_)
