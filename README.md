@@ -1,9 +1,4 @@
-![Agreena](https://agreena.com/wp-content/uploads/2021/06/agreena-logo.svg)
-
-# NodeJS recruitment test task
-
-here is the link to postman documentation https://www.postman.com/cvcompiler/workspace/agreena-code-challenge/request/10665578-3566bbb7-cdbb-4c24-b96f-64431f5b2732
-
+ 
 ### Carbon Certificates application API
 
 Create the API containing endpoints:
